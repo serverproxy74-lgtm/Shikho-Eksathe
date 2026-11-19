@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>শিখি একসাথে – শিক্ষা ও লেখাপড়ার ব্লগ</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap">
+<style>
+:root{--bg:#faf8f4;--card:#fff;--text:#1f2937;--muted:#6b7280;--accent:#0f766e;--accent-soft:#d9f0ec;--line:#e5e1d8;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141816;--card:#1d2321;--text:#eceae4;--muted:#a1a8a4;--accent:#5eead4;--accent-soft:#1b3a36;--line:#2c3532;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#141816;--card:#1d2321;--text:#eceae4;--muted:#a1a8a4;--accent:#5eead4;--accent-soft:#1b3a36;--line:#2c3532;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Hind Siliguri","Noto Sans Bengali","Kalpurush",system-ui,sans-serif;line-height:1.7}
+.wrap{max-width:860px;margin:0 auto;padding:0 18px}
+header{border-bottom:1px solid var(--line)}
+header .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:16px;padding-bottom:16px}
+.logo{font-weight:700;font-size:1.35rem;color:var(--accent)}
+nav a{margin-left:16px;color:var(--muted);text-decoration:none;font-weight:500}
+nav a:hover{color:var(--accent)}
+.hero{padding:44px 0 24px}
+.hero h1{font-size:clamp(1.8rem,6vw,2.6rem);line-height:1.3;margin:0 0 10px}
+.hero p{color:var(--muted);font-size:1.1rem;margin:0;max-width:560px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0}
+.tags button{font:inherit;border:1px solid var(--line);background:var(--card);color:var(--text);padding:6px 16px;border-radius:99px;cursor:pointer}
+.tags button.on{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));padding-bottom:36px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+.card .cat{display:inline-block;background:var(--accent-soft);color:var(--accent);font-size:.82rem;font-weight:600;padding:2px 10px;border-radius:99px}
+.card h2{font-size:1.2rem;line-height:1.4;margin:10px 0 6px}
+.card p{margin:0 0 10px;color:var(--muted);font-size:.97rem}
+.card small{color:var(--muted)}
+.about{background:var(--accent-soft);border-radius:14px;padding:22px;margin-bottom:36px}
+.about h3{margin:0 0 6px}
+.about p{margin:0}
+footer{border-top:1px solid var(--line);padding:20px 0;color:var(--muted);text-align:center;font-size:.9rem}
+.card{cursor:pointer;transition:transform .15s}.card:hover{transform:translateY(-3px)}
+.card.hid-c,.card.hid-q{display:none}
+#q{width:100%;font:inherit;padding:10px 16px;border:1px solid var(--line);border-radius:99px;background:var(--card);color:var(--text);margin-top:8px}
+#theme{font:inherit;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:99px;padding:2px 12px;margin-left:16px;cursor:pointer}
+#article{display:none;padding:32px 0 48px;max-width:640px}
+main.reading>:not(#article){display:none}
+main.reading #article{display:block}
+#article h1{font-size:clamp(1.6rem,5vw,2.2rem);line-height:1.35;margin:12px 0 4px}
+#article p{font-size:1.08rem;margin:0 0 16px}
+#article .meta{color:var(--muted);margin-bottom:22px}
+#article a.back{color:var(--accent);text-decoration:none;font-weight:600}
+.qz{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:20px}
+.qz h2{margin:0 0 4px}.qz>p{margin:0 0 14px;color:var(--muted)}
+.qz h3{font-size:1.1rem;line-height:1.5;margin:0 0 10px}
+.opt{display:block;width:100%;text-align:left;font:inherit;padding:10px 14px;margin:8px 0;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text);cursor:pointer}
+.opt:hover{border-color:var(--accent)}
+.go{font:inherit;background:var(--accent);color:var(--bg);border:0;border-radius:99px;padding:8px 20px;cursor:pointer;margin:6px 8px 6px 0}
+#pname{font:inherit;padding:8px 14px;border:1px solid var(--line);border-radius:99px;background:var(--bg);color:var(--text);width:100%;margin:8px 0}
+.who{color:var(--muted);font-size:.9rem;margin-left:16px}
+.opt.ok{background:#16a34a;color:#fff;border-color:#16a34a}.opt.no{background:#dc2626;color:#fff;border-color:#dc2626}
+#stl li{padding:4px 0}#stl li span{float:right}
+#lb{max-height:420px;overflow-y:auto}
+.tm{font-weight:600;color:var(--accent);margin-bottom:6px}
+.qg select,.qg input,.qg textarea{font:inherit;padding:8px 14px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text);width:100%;margin:6px 0}
+#qout{white-space:pre-wrap;margin-top:12px;line-height:1.9}
+#lb ol{margin:0;padding-left:26px}
+#lb li{padding:6px 0;border-bottom:1px solid var(--line)}
+#lb li.me{color:var(--accent);font-weight:600}
+#lb li span{float:right}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="logo">শিখি একসাথে</div>
+  <nav><a href="#posts">লেখা</a><a href="#leaderboard">লিডারবোর্ড</a><a href="#about">পরিচিতি</a><span id="who" class="who"></span><button id="theme" aria-label="থিম বদলান">🌓</button></nav>
+</div></header>
+
+<main class="wrap">
+  <section class="hero">
+    <h1>পড়ালেখা হোক সহজ ও আনন্দের</h1>
+    <p>পড়ার কৌশল, পরীক্ষার প্রস্তুতি আর শেখার নতুন উপায় নিয়ে সহজ বাংলায় লেখা।</p>
+  </section>
+
+  <input id="q" type="search" placeholder="লেখা খুঁজুন…" aria-label="লেখা খুঁজুন">
+  <div class="tags" id="tags">
+    <button class="on" data-c="all">সব</button>
+    <button data-c="পড়ার কৌশল">পড়ার কৌশল</button>
+    <button data-c="পরীক্ষা">পরীক্ষা</button>
+    <button data-c="ক্যারিয়ার">ক্যারিয়ার</button>
+  </div>
+
+  <section class="grid" id="posts">
+    <article class="card" data-c="পড়ার কৌশল"><span class="cat">পড়ার কৌশল</span>
+      <h2>মনোযোগ ধরে রাখার ৫টি সহজ উপায়</h2>
+      <p>পড়তে বসে বারবার মন সরে যায়? ছোট ছোট অভ্যাসে ফোকাস বাড়ানোর কিছু কার্যকর পদ্ধতি।</p><small>৫ মিনিটের পাঠ</small></article>
+    <article class="card" data-c="পরীক্ষা"><span class="cat">পরীক্ষা</span>
+      <h2>পরীক্ষার আগের সপ্তাহে কী করবেন</h2>
+      <p>শেষ মুহূর্তের প্রস্তুতিতে রিভিশন, ঘুম আর সময় ভাগ করার একটি সহজ পরিকল্পনা।</p><small>৬ মিনিটের পাঠ</small></article>
+    <article class="card" data-c="ক্যারিয়ার"><span class="cat">ক্যারিয়ার</span>
+      <h2>পড়াশোনার পাশাপাশি নতুন দক্ষতা শেখা</h2>
+      <p>অনলাইনে বিনামূল্যে শেখার সুযোগ কীভাবে কাজে লাগাবেন, তার একটি শুরুর গাইড।</p><small>৪ মিনিটের পাঠ</small></article>
+    <article class="card" data-c="পড়ার কৌশল"><span class="cat">পড়ার কৌশল</span>
+      <h2>নোট নেওয়ার কার্যকর পদ্ধতি</h2>
+      <p>ক্লাসে বা বই পড়ার সময় এমনভাবে নোট করুন, যাতে পরে রিভিশন হয় দ্রুত।</p><small>৫ মিনিটের পাঠ</small></article>
+  </section>
+
+  <section class='qz' id='study'>
+    <h2>🕒 আমার পড়াশোনা</h2>
+    <p id='clk' style='font-weight:600'></p>
+    <div id='mycl'></div>
+    <p id='stm'></p>
+    <div id='stl'></div>
+  </section>
+  <section class='qz' id='leaderboard'>
+    <h2>কুইজ ও লিডারবোর্ড</h2>
+    <p>৫টি প্রশ্নের উত্তর দিয়ে স্কোর তুলুন এবং সেরাদের তালিকায় নাম লেখান।</p>
+    <div id='quiz'></div>
+  </section>
+  <section class='qz'>
+    <h2>🏆 সেরা ১০০</h2>
+    <div id='lb'>লোড হচ্ছে…</div>
+  </section>
+
+  <section class='qz qg' id='ed' hidden>
+    <h2>✍️ নতুন লেখা যোগ করুন</h2>
+    <p>শুধু সম্পাদক দেখতে পান। অনুচ্ছেদের মাঝে একটি লাইন ফাঁকা রাখুন।</p>
+    <input id='et' placeholder='শিরোনাম'>
+    <select id='ec'><option>পড়ার কৌশল</option><option>পরীক্ষা</option><option>ক্যারিয়ার</option></select>
+    <select id='ek'><option value=''>সব ক্লাস</option><option value='6'>ক্লাস ৬</option><option value='7'>ক্লাস ৭</option><option value='8'>ক্লাস ৮</option><option value='9'>ক্লাস ৯</option><option value='10'>ক্লাস ১০</option></select>
+    <textarea id='eb' rows='7' placeholder='লেখা'></textarea>
+    <button class='go' id='epub'>প্রকাশ করুন</button><span id='emsg'></span>
+  </section>
+  <section class='qz qg' id='ans'>
+    <h2>🔎 প্রশ্ন খুঁজুন, উত্তর পান</h2>
+    <select id='scl'><option value='all'>সব ক্লাস</option><option value='6'>ক্লাস ৬</option><option value='7'>ক্লাস ৭</option><option value='8'>ক্লাস ৮</option><option value='9'>ক্লাস ৯</option><option value='10'>ক্লাস ১০</option></select>
+    <input id='sq' placeholder='প্রশ্ন বা বিষয় লিখুন…'>
+    <div id='sres'>উপরে প্রশ্ন বা শব্দ লিখলে উত্তর এখানে আসবে।</div>
+  </section>
+  <section class='qz qg' id='taed' hidden>
+    <h2>📝 প্রশ্ন ও উত্তর যোগ করুন (শিক্ষক)</h2>
+    <p>যেকোনো ধরনের প্রশ্ন (সৃজনশীল, সংক্ষিপ্ত, বর্ণনামূলক) উত্তরসহ যোগ করুন। ছাত্ররা সার্চ করলে উত্তর দেখবে।</p>
+    <select id='tcl'><option value='6'>ক্লাস ৬</option><option value='7'>ক্লাস ৭</option><option value='8'>ক্লাস ৮</option><option value='9'>ক্লাস ৯</option><option value='10'>ক্লাস ১০</option></select>
+    <input id='tsub' placeholder='বিষয়'><input id='tch' placeholder='অধ্যায় ও পৃষ্ঠা'>
+    <textarea id='tq' rows='2' placeholder='প্রশ্ন'></textarea>
+    <textarea id='tans' rows='5' placeholder='উত্তর'></textarea>
+    <button class='go' id='tadd'>যোগ করুন</button><span id='tms'></span>
+    <div id='tls'></div>
+  </section>
+  <section class='qz qg' id='qbed' hidden>
+    <h2>📚 বইভিত্তিক প্রশ্ন যোগ করুন</h2>
+    <p>শুধু শিক্ষক ও সম্পাদক দেখতে পান। প্রতিটি প্রশ্নের সঙ্গে বইয়ের বিষয়, অধ্যায় ও পৃষ্ঠা লিখুন।</p>
+    <select id='bcl'><option value='6'>ক্লাস ৬</option><option value='7'>ক্লাস ৭</option><option value='8'>ক্লাস ৮</option><option value='9'>ক্লাস ৯</option><option value='10'>ক্লাস ১০</option></select>
+    <input id='bsub' placeholder='বিষয় (যেমন: বিজ্ঞান)'>
+    <input id='bch' placeholder='অধ্যায় ও পৃষ্ঠা (যেমন: অধ্যায় ৩, পৃষ্ঠা ৪২)'>
+    <textarea id='bq' rows='2' placeholder='প্রশ্ন'></textarea>
+    <input id='bo1' placeholder='ক) অপশন'><input id='bo2' placeholder='খ) অপশন'><input id='bo3' placeholder='গ) অপশন'><input id='bo4' placeholder='ঘ) অপশন'>
+    <select id='bans'><option value='0'>সঠিক উত্তর: ক</option><option value='1'>সঠিক উত্তর: খ</option><option value='2'>সঠিক উত্তর: গ</option><option value='3'>সঠিক উত্তর: ঘ</option></select>
+    <button class='go' id='badd'>প্রশ্ন যোগ করুন</button><span id='bms'></span>
+    <div id='bls'></div>
+  </section>
+  <section class='qz qg' id='hub'>
+    <h2>🏫 ক্লাস হাব</h2>
+    <p>ক্লাস বেছে প্রশ্ন করুন, উত্তর খুঁজুন, নিজের প্রশ্ন বা আইডিয়া শেয়ার করুন, শিক্ষককে বার্তা দিন।</p>
+    <select id='hcl'><option value='6'>ক্লাস ৬</option><option value='7'>ক্লাস ৭</option><option value='8'>ক্লাস ৮</option><option value='9'>ক্লাস ৯</option><option value='10'>ক্লাস ১০</option></select>
+    <select id='hty'><option value='q'>প্রশ্ন করুন</option><option value='s'>আমার তৈরি প্রশ্ন শেয়ার</option><option value='i'>আইডিয়া শেয়ার</option><option value='teacher'>শিক্ষককে প্রশ্ন (সবাই দেখবে)</option></select>
+    <textarea id='htx' rows='3' placeholder='এখানে লিখুন…'></textarea>
+    <button class='go' id='hgo'>পাঠান</button><span id='hms'></span>
+    <input id='hsq' placeholder='উত্তর খুঁজুন…'>
+    <button class='go' id='hai'>🤖 এআই-এর উত্তর</button><button class='go' id='hex'>📅 মাসিক পরীক্ষা শুরু করুন</button>
+    <div id='hao' style='white-space:pre-wrap'></div>
+    <div id='hin' hidden></div>
+    <div id='hl'></div>
+  </section>
+  <section class='qz qg' id='qgen'>
+    <h2>📝 প্রশ্ন ও উত্তর তৈরি করুন</h2>
+    <p>ক্লাস, প্রশ্নের ধরন ও বিষয় বেছে নিন। সৃজনশীল, বহুনির্বাচনী বা সংক্ষিপ্ত প্রশ্ন উত্তরসহ পাবেন।</p>
+    <select id='gcl' aria-label='ক্লাস'><option value='6'>ক্লাস ৬</option><option value='7'>ক্লাস ৭</option><option value='8'>ক্লাস ৮</option><option value='9'>ক্লাস ৯</option><option value='10'>ক্লাস ১০</option></select>
+    <select id='gty' aria-label='প্রশ্নের ধরন'><option value='sri'>সৃজনশীল প্রশ্ন</option><option value='mcq'>বহুনির্বাচনী প্রশ্ন (MCQ)</option><option value='short'>সংক্ষিপ্ত প্রশ্ন ও উত্তর</option></select>
+    <datalist id='subs'><option value='বাংলা'><option value='ইংরেজি'><option value='গণিত'><option value='বিজ্ঞান'><option value='বাংলাদেশ ও বিশ্বপরিচয়'><option value='ইসলাম ও নৈতিক শিক্ষা'><option value='তথ্য ও যোগাযোগ প্রযুক্তি'><option value='পদার্থবিজ্ঞান'><option value='রসায়ন'><option value='জীববিজ্ঞান'><option value='উচ্চতর গণিত'></datalist>
+    <input id='gsub' list='subs' placeholder='বিষয় (যেমন: গণিত, বিজ্ঞান)'>
+    <input id='gch' placeholder='অধ্যায় বা টপিক (ঐচ্ছিক)'>
+    <button class='go' id='gbtn'>প্রশ্ন তৈরি করুন</button>
+    <div id='qout'></div>
+    <button class='go' id='gcopy' hidden>কপি করুন</button><button class='go' id='gdl' hidden>ফাইল হিসেবে সেভ করুন</button>
+    <small style='color:var(--muted)'>এই প্রশ্নগুলো এআই দিয়ে তৈরি। পাঠ্যবইয়ের সঙ্গে মিলিয়ে নিন।</small>
+  </section>
+
+  <section class="about" id="about">
+    <h3>আমাদের কথা</h3>
+    <p>এই ব্লগের লক্ষ্য শিক্ষার্থীদের জন্য সহজ, কাজের তথ্য পৌঁছে দেওয়া। নতুন লেখা পেতে নিয়মিত ঘুরে যান।</p>
+  </section>
+<section id="article"></section>
+</main>
+
+<footer>© ২০২৬ শিখি একসাথে</footer>
+
+<script>
+/* ===== Firebase সেটআপ: নিচের মানগুলো নিজের প্রজেক্টের মান দিয়ে বদলান ===== */
+var CFG={apiKey:'AIzaSyC5mEBCM7HQbMjvkcanCsK7Um4WPflwMLw',authDomain:'shikhi-ekshathe.firebaseapp.com',projectId:'shikhi-ekshathe',storageBucket:'shikhi-ekshathe.firebasestorage.app',messagingSenderId:'108569237004',appId:'1:108569237004:web:6257038797c97496908029'};
+/* সম্পাদক (যারা নতুন লেখা যোগ/মুছতে পারবেন) তাদের ইমেইল */
+var ADMINS=['serverproxy74@gmail.com'];
+/* Cloud Function (functions/index.js) চালু করার পর এটা true করুন; তখন সাইন-ইন করা ব্যবহারকারীরা এআই ব্যবহার করতে পারবেন */
+var AI_ON=false;
+/* ================================================================== */
+var _fb=null;
+function FB(){return _fb||(_fb=(async function(){
+  var B='https://www.gstatic.com/firebasejs/10.12.2/';
+  var m=await Promise.all([import(B+'firebase-app.js'),import(B+'firebase-auth.js'),import(B+'firebase-firestore.js'),import(B+'firebase-functions.js')]);
+  var app=m[0].initializeApp(CFG),auth=m[1].getAuth(app);
+  await auth.authStateReady();
+  return {Au:m[1],Fs:m[2],Fn:m[3],auth:auth,fs:m[2].getFirestore(app),fns:m[3].getFunctions(app,'us-central1')};
+})())}
+function mkQ(f,c,cons){
+  return{
+    orderBy:function(k,d){return mkQ(f,c,cons.concat([f.Fs.orderBy(k,d||'asc')]))},
+    limit:function(n){return mkQ(f,c,cons.concat([f.Fs.limit(n)]))},
+    add:function(data){return f.Fs.addDoc(c,data)},
+    onSnapshot:function(nx,er){
+      return f.Fs.onSnapshot(f.Fs.query.apply(null,[c].concat(cons)),function(s){
+        nx({docs:s.docs.map(function(d){return{id:d.id,data:function(){return d.data()}}})});
+      },er);
+    }
+  };
+}
+window.claude={use:async function(n){
+  if(n==='sample'){
+    if(!AI_ON)return null;
+    var g=await FB();
+    if(!g.auth.currentUser)return null;
+    var call=g.Fn.httpsCallable(g.fns,'ask');
+    return async function(prompt,o){
+      var r=await call({prompt:String(prompt)});var t=r.data.text;
+      if(o&&o.onText)o.onText({text:t,delta:t});
+      return {text:t};
+    };
+  }
+  if(n!=='user'&&n!=='db')return null;
+  var f=await FB();
+  if(n==='user'){
+    var cu=f.auth.currentUser;
+    return{
+      id:async function(){return cu?cu.uid:null},
+      name:async function(){return cu?(cu.displayName||(cu.email||'').split('@')[0]):''},
+      canEdit:function(){return !!(cu&&ADMINS.indexOf(cu.email)>=0)}
+    };
+  }
+  return{
+    collection:function(p){return mkQ(f,f.Fs.collection(f.fs,p),[])},
+    doc:function(p){
+      var r=f.Fs.doc(f.fs,p);
+      return{
+        get:async function(){var s=await f.Fs.getDoc(r);return{exists:s.exists(),data:function(){return s.data()}}},
+        set:function(d){return f.Fs.setDoc(r,d)},
+        delete:function(){return f.Fs.deleteDoc(r)}
+      };
+    }
+  };
+}};
+</script>
+<script>
+/* সাইন-ইন বাটন ও ডায়ালগ */
+(function(){
+  var g=function(i){return document.getElementById(i)};
+  var b=document.createElement('button');b.textContent='সাইন-ইন';
+  b.style.cssText='font:inherit;margin-left:10px;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:99px;padding:2px 12px;cursor:pointer';
+  g('theme').parentNode.insertBefore(b,g('theme'));
+  var d=document.createElement('dialog');
+  d.style.cssText='border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--text);font-family:inherit';
+  d.innerHTML='<form method="dialog" style="display:grid;gap:8px;min-width:250px"><h3 style="margin:0">সাইন-ইন</h3>'
+   +'<input id="lem" type="email" placeholder="ইমেইল" style="font:inherit;padding:8px">'
+   +'<input id="lpw" type="password" placeholder="পাসওয়ার্ড (কমপক্ষে ৬ অক্ষর)" style="font:inherit;padding:8px">'
+   +'<button type="button" id="lin" class="go">লগইন</button>'
+   +'<button type="button" id="lup" class="go">নতুন অ্যাকাউন্ট খুলুন</button>'
+   +'<button type="button" id="lgo" class="go">Google দিয়ে সাইন-ইন</button>'
+   +'<small id="lms"></small><button value="x" style="font:inherit">বন্ধ করুন</button></form>';
+  document.body.appendChild(d);
+  var ms=g('lms');
+  var HINT={
+    'auth/invalid-api-key':'Firebase কনফিগ (CFG) ঠিক নেই। ফাইলের শুরুতে নিজের কনফিগ বসান।',
+    'auth/api-key-not-valid':'Firebase কনফিগ (CFG) ঠিক নেই। ফাইলের শুরুতে নিজের কনফিগ বসান।',
+    'auth/configuration-not-found':'Firebase Authentication চালু করা হয়নি। Console-এ Authentication > Get started করুন।',
+    'auth/operation-not-allowed':'Firebase Authentication-এ এই সাইন-ইন পদ্ধতি (Google বা Email/Password) চালু করা হয়নি।',
+    'auth/unauthorized-domain':'এই ডোমেইন Firebase-এর Authorized domains-এ যোগ করা নেই।',
+    'auth/popup-blocked':'ব্রাউজার পপআপ আটকে দিয়েছে। পপআপ অনুমতি দিন।',
+    'auth/popup-closed-by-user':'সাইন-ইন উইন্ডো বন্ধ করে দেওয়া হয়েছে।',
+    'auth/invalid-credential':'ইমেইল বা পাসওয়ার্ড ভুল।',
+    'auth/wrong-password':'ইমেইল বা পাসওয়ার্ড ভুল।',
+    'auth/user-not-found':'এই ইমেইলে অ্যাকাউন্ট নেই। আগে নতুন অ্যাকাউন্ট খুলুন।',
+    'auth/invalid-email':'ইমেইলটি সঠিক নয়।',
+    'auth/email-already-in-use':'এই ইমেইলে আগে থেকেই অ্যাকাউন্ট আছে, লগইন করুন।',
+    'auth/weak-password':'পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে।',
+    'auth/network-request-failed':'ইন্টারনেট সংযোগে সমস্যা।'
+  };
+  function run(fn){return async function(){
+    if(!CFG.apiKey||CFG.apiKey==='YOUR_API_KEY'){ms.textContent='Firebase কনফিগ এখনো বসানো হয়নি। ফাইলের শুরুতে CFG-এ নিজের মান দিন।';return}
+    if(!/^https?:$/.test(location.protocol)){ms.textContent='ফাইলটা সরাসরি না খুলে হোস্ট করা লিংক (https) থেকে খুলুন।';return}
+    try{var f=await FB();await fn(f);location.reload()}
+    catch(e){var c=(e&&e.code)||'';ms.textContent=HINT[c]||(c?('সফল হয়নি। কোড: '+c):('লগইন সেবার সঙ্গে সংযোগ হয়নি। ফাইলটা Claude অ্যাপের ভেতরে না খুলে নিজের হোস্ট করা লিংক (https) থেকে খুলুন। ['+String((e&&e.message)||e).slice(0,80)+']'))}
+  }}
+  g('lin').onclick=run(function(f){return f.Au.signInWithEmailAndPassword(f.auth,g('lem').value.trim(),g('lpw').value)});
+  g('lup').onclick=run(function(f){return f.Au.createUserWithEmailAndPassword(f.auth,g('lem').value.trim(),g('lpw').value)});
+  g('lgo').onclick=run(function(f){return f.Au.signInWithPopup(f.auth,new f.Au.GoogleAuthProvider())});
+  var signedIn=false;
+  b.onclick=async function(){
+    if(!signedIn){d.showModal();return}
+    try{var f=await FB();await f.Au.signOut(f.auth);location.reload()}catch(e){}
+  };
+  FB().then(function(f){if(f.auth.currentUser){signedIn=true;b.textContent='সাইন-আউট'}}).catch(function(){});
+})();
+</script>
+
+<script>
+var P=[
+{t:'মনোযোগ ধরে রাখার ৫টি সহজ উপায়',c:'পড়ার কৌশল',m:'৫ মিনিটের পাঠ',b:['পড়তে বসে মন সরে যাওয়া খুব স্বাভাবিক। সমাধান হলো মনকে বকা নয়, পরিবেশ আর অভ্যাস গুছিয়ে নেওয়া।','১. ২৫ মিনিট পড়ুন, ৫ মিনিট বিরতি নিন। ২. পড়ার সময় ফোন অন্য ঘরে রাখুন। ৩. প্রতিবার শুরুর আগে ছোট একটি লক্ষ্য ঠিক করুন। ৪. কঠিন বিষয় দিনের সবচেয়ে সতেজ সময়ে পড়ুন। ৫. পড়া শেষে এক মিনিটে নিজের ভাষায় সারকথা বলুন।','এক সপ্তাহ চেষ্টা করলেই পার্থক্য টের পাবেন। বড় পরিবর্তনের চেয়ে ছোট অভ্যাস বেশি টেকে।']},
+{t:'পরীক্ষার আগের সপ্তাহে কী করবেন',c:'পরীক্ষা',m:'৬ মিনিটের পাঠ',b:['শেষ সপ্তাহে নতুন কিছু শুরু করার চেয়ে যা পড়েছেন তা ঝালিয়ে নেওয়া বেশি কাজের।','প্রতিদিনের সময় ভাগ করুন: সকালে কঠিন বিষয়, দুপুরে অনুশীলন, রাতে হালকা রিভিশন। আগের বছরের প্রশ্ন সময় ধরে সমাধান করুন।','পরীক্ষার আগের রাতে অন্তত আট থেকে দশ ঘণ্টা ঘুমান। ক্লান্ত মস্তিষ্কে পড়া মনে থাকে না।']},
+{t:'পড়াশোনার পাশাপাশি নতুন দক্ষতা শেখা',c:'ক্যারিয়ার',m:'৪ মিনিটের পাঠ',b:['সার্টিফিকেটের পাশাপাশি বাস্তব দক্ষতাও ক্যারিয়ারে বড় ভূমিকা রাখে।','প্রথমে একটি দক্ষতা বেছে নিন, যেমন লেখালেখি, প্রোগ্রামিং বা ডিজাইন। প্রতিদিন ৩০ মিনিট দিন এবং শেখা বিষয়ে ছোট একটি প্রজেক্ট বানান।','অনলাইনে অনেক বিনামূল্যের কোর্স আছে। একসাথে অনেকগুলো না ধরে একটি শেষ করাই ভালো।']},
+{t:'নোট নেওয়ার কার্যকর পদ্ধতি',c:'পড়ার কৌশল',m:'৫ মিনিটের পাঠ',b:['ভালো নোট মানে সবকিছু টুকে রাখা নয়, বরং মূল বিষয়গুলো নিজের ভাষায় গুছিয়ে লেখা।','পাতাকে দুই ভাগ করুন: বাঁ দিকে প্রশ্ন বা মূল শব্দ, ডান দিকে ব্যাখ্যা। পরে ডান দিক ঢেকে প্রশ্ন দেখে উত্তর মনে করার চেষ্টা করুন।','সপ্তাহে একবার নোট দেখে সংক্ষিপ্ত করলে রিভিশন অনেক দ্রুত হয়।']}
+];
+var C='all',K='all',LK='scores',UNSUB=null,STARTED=false,Q0=null,LOCK=false,TI=null,DP={};
+var HC='6',HD=null,HUNS=null,HDOCS=[],HLB={teacher:'শিক্ষককে প্রশ্ন',q:'প্রশ্ন',s:'শেয়ার করা প্রশ্ন',i:'আইডিয়া'};
+function startExam(k){if(!Q0)Q0=Q;Q=QC[k];qi=0;sc=0;STARTED=true;$('lb').parentNode.querySelector('h2').textContent='🏆 সেরা ১০০ · ক্লাস '+bn(k);board('c'+k);renderQ();location.hash='leaderboard'}
+function hubLoad(){
+  if(HUNS){HUNS();HUNS=null}
+  var box=$('hl');
+  if(!HD){box.textContent='প্রশ্নোত্তর দেখতে সাইন-ইন প্রয়োজন।';return}
+  box.textContent='লোড হচ্ছে…';
+  HUNS=HD.collection('qa'+HC).orderBy('at','desc').limit(100).onSnapshot(function(s){HDOCS=s.docs;hubDraw()},function(){box.textContent='লোড হয়নি।'});
+}
+function hubDraw(){
+  var box=$('hl'),q=$('hsq').value.trim(),n=0;box.textContent='';
+  HDOCS.forEach(function(d){
+    var v=d.data(),txt=String(v.t||''),as=Array.isArray(v.a)?v.a:[];
+    if(q&&(txt+as.map(function(x){return x.t}).join(' ')).indexOf(q)<0)return;
+    n++;
+    var c=el('div',null,'qz');
+    c.appendChild(el('small',(v.ty||'')+' · '+(v.n||'অতিথি')));
+    c.appendChild(el('p',txt));
+    as.forEach(function(x){c.appendChild(el('p','↳ '+x.t+' — '+(x.n||'অতিথি')))});
+    var inp=el('input');inp.placeholder='উত্তর লিখুন…';
+    var bt=el('button','উত্তর দিন','go');
+    bt.onclick=async function(){
+      var t=inp.value.trim();if(!t||!UID)return;
+      try{var r=HD.doc('qa'+HC+'/'+d.id),s=await r.get(),o=s.data();o.a=(o.a||[]).concat([{t:t.slice(0,500),n:DEFNAME||'অতিথি'}]).slice(-30);await r.set(o)}catch(e){}
+    };
+    c.appendChild(inp);c.appendChild(bt);box.appendChild(c);
+  });
+  if(!n)box.textContent='কিছু পাওয়া যায়নি।';
+}
+$('hcl').onchange=function(){HC=this.value;hubLoad()};
+$('hsq').oninput=hubDraw;
+$('hex').onclick=function(){startCls(HC);location.hash='leaderboard'};
+$('hgo').onclick=async function(){
+  var t=$('htx').value.trim(),ty=$('hty').value,m=$('hms');
+  if(!t)return;
+  if(!HD||!UID){m.textContent=' পোস্ট করতে সাইন-ইন করুন।';return}
+  try{
+    if(false)await HD.collection('tm').add({cl:HC,n:DEFNAME||'অতিথি',t:t.slice(0,1000),at:Date.now()});
+    else await HD.collection('qa'+HC).add({ty:HLB[ty],n:DEFNAME||'অতিথি',t:t.slice(0,1000),a:[],at:Date.now()});
+    $('htx').value='';m.textContent=' পাঠানো হয়েছে।';
+  }catch(e){m.textContent=' পাঠানো যায়নি।'}
+};
+$('hai').onclick=async function(){
+  var q=$('hsq').value.trim()||$('htx').value.trim(),o=$('hao'),s=null;
+  if(!q){o.textContent='প্রথমে প্রশ্নটি লিখুন।';return}
+  try{s=await claude.use('sample')}catch(e){}
+  if(!s)return;
+  o.textContent='উত্তর তৈরি হচ্ছে…';
+  try{await s('তুমি একজন শিক্ষক। ক্লাস '+bn(HC)+' এর একজন শিক্ষার্থীর প্রশ্নের সহজ বাংলায় উত্তর দাও, মার্কডাউন চিহ্ন ছাড়া: '+q,{onText:function(r){o.textContent=r.text},cache:false,modelTier:'quick'})}
+  catch(e){o.textContent='উত্তর তৈরি করা যায়নি।'}
+};
+(async function(){
+  var u=null,ed=false,s=null;
+  try{if(window.claude&&claude.use){u=await claude.use('user');HD=await claude.use('db');ed=!!(u&&u.canEdit&&u.canEdit());s=await claude.use('sample')}}catch(e){}
+  if(!s)$('hai').hidden=true;
+  hubLoad();
+  if(false&&HD)HD.collection('tm').orderBy('at','desc').limit(50).onSnapshot(function(sn){
+    var b=$('hin');b.hidden=false;b.textContent='';b.appendChild(el('h3','📨 শিক্ষকের ইনবক্স'));
+    sn.docs.forEach(function(d){var v=d.data();b.appendChild(el('p','ক্লাস '+bn(v.cl)+' · '+v.n+': '+v.t))});
+  },function(){});
+})();
+var QBD=null;
+function qbList(){
+  var box=$('bls');if(!box||$('qbed').hidden)return;
+  box.textContent='';var k=$('bcl').value;
+  (QB[k]||[]).forEach(function(x){
+    var c=el('div',null,'qz');c.appendChild(el('small',x.s));c.appendChild(el('p',x.q+'  ['+(x.o[x.a]||'')+']'));
+    var d=el('button','মুছুন','go');d.onclick=function(){QBD.doc('qb'+k+'/'+x.id).delete()};c.appendChild(d);box.appendChild(c);
+  });
+}
+(async function(){
+  var u=null,db=null,ed=false;
+  try{if(window.claude&&claude.use){u=await claude.use('user');db=await claude.use('db');ed=!!(u&&u.canEdit&&u.canEdit())}}catch(e){}
+  if(!db)return;
+  ['6','7','8','9','10'].forEach(function(k){
+    db.collection('qb'+k).orderBy('at','desc').limit(300).onSnapshot(function(s){
+      QB[k]=s.docs.map(function(d){var v=d.data();return{id:d.id,q:String(v.q||''),o:Array.isArray(v.o)?v.o.map(String):[],a:+v.a||0,s:String(v.s||'')}});
+      qbList();
+    },function(){});
+  });
+  if(!ed)return;
+  QBD=db;$('qbed').hidden=false;$('bcl').onchange=qbList;
+  $('badd').onclick=async function(){
+    var k=$('bcl').value,q=$('bq').value.trim(),m=$('bms');
+    var o=[1,2,3,4].map(function(i){return $('bo'+i).value.trim()});
+    var s=[$('bsub').value.trim(),$('bch').value.trim()].filter(Boolean).join(' · ');
+    if(!q||!s||o.some(function(x){return !x})){m.textContent=' বিষয়, অধ্যায়/পৃষ্ঠা সহ সব ঘর পূরণ করুন।';return}
+    try{
+      await db.collection('qb'+k).add({q:q.slice(0,300),o:o.map(function(x){return x.slice(0,150)}),a:+$('bans').value,s:s.slice(0,150),at:Date.now()});
+      ['bq','bo1','bo2','bo3','bo4'].forEach(function(i){$(i).value=''});m.textContent=' যোগ হয়েছে।';
+    }catch(e){m.textContent=' যোগ করা যায়নি।'}
+  };
+  qbList();
+})();
+var TA={},TAD=null;
+function taSearch(){
+  var box=$('sres'),q=$('sq').value.trim().toLowerCase(),c=$('scl').value;box.textContent='';
+  if(!q){box.textContent='উপরে প্রশ্ন বা শব্দ লিখলে উত্তর এখানে আসবে।';return}
+  var ws=q.split(/\s+/).filter(Boolean),res=[];
+  Object.keys(TA).forEach(function(k){TA[k].forEach(function(x){
+    if(c!=='all'&&x.k!==c)return;
+    var h=(x.q+' '+x.sub+' '+x.a).toLowerCase(),ql=x.q.toLowerCase(),n=0,t=0;
+    ws.forEach(function(w){if(h.indexOf(w)>=0)n++;if(ql.indexOf(w)>=0)t++});
+    if(n>0)res.push({x:x,n:n,t:t});
+  })});
+  res.sort(function(a,b){return b.t-a.t||b.n-a.n});
+  if(!res.length){box.textContent='কোনো উত্তর পাওয়া যায়নি। ক্লাস হাবে প্রশ্ন করে দেখুন।';return}
+  res.slice(0,20).forEach(function(r){
+    var x=r.x,card=el('div',null,'qz'),p=el('p',x.a);p.style.whiteSpace='pre-wrap';
+    card.appendChild(el('small','ক্লাস '+bn(x.k)+' · '+x.s));
+    card.appendChild(el('h3',x.q));card.appendChild(p);box.appendChild(card);
+  });
+}
+function taList(){
+  var box=$('tls');if(!box||$('taed').hidden)return;
+  box.textContent='';var k=$('tcl').value;
+  (TA[k]||[]).forEach(function(x){
+    var c=el('div',null,'qz');c.appendChild(el('small',x.s));c.appendChild(el('p',x.q));
+    var d=el('button','মুছুন','go');d.onclick=function(){TAD.doc('ta'+k+'/'+x.id).delete()};c.appendChild(d);box.appendChild(c);
+  });
+}
+$('sq').oninput=taSearch;$('scl').onchange=taSearch;
+(async function(){
+  var u=null,db=null,ed=false;
+  try{if(window.claude&&claude.use){u=await claude.use('user');db=await claude.use('db');ed=!!(u&&u.canEdit&&u.canEdit())}}catch(e){}
+  if(!db){$('sres').textContent='উত্তর দেখতে সাইন-ইন প্রয়োজন।';return}
+  ['6','7','8','9','10'].forEach(function(k){
+    db.collection('ta'+k).orderBy('at','desc').limit(500).onSnapshot(function(s){
+      TA[k]=s.docs.map(function(d){var v=d.data();return{id:d.id,k:k,q:String(v.q||''),a:String(v.a||''),s:String(v.s||''),sub:String(v.sub||'')}});
+      taSearch();taList();
+    },function(){});
+  });
+  if(!ed)return;
+  TAD=db;$('taed').hidden=false;$('tcl').onchange=taList;
+  $('tadd').onclick=async function(){
+    var k=$('tcl').value,q=$('tq').value.trim(),a=$('tans').value.trim(),sub=$('tsub').value.trim(),ch=$('tch').value.trim(),m=$('tms');
+    if(!q||!a||!sub||!ch){m.textContent=' বিষয়, অধ্যায়/পৃষ্ঠা, প্রশ্ন ও উত্তর সব দিন।';return}
+    try{
+      await db.collection('ta'+k).add({q:q.slice(0,500),a:a.slice(0,4000),sub:sub.slice(0,60),s:sub.slice(0,60)+' · '+ch.slice(0,100),at:Date.now()});
+      $('tq').value='';$('tans').value='';m.textContent=' যোগ হয়েছে।';
+    }catch(e){m.textContent=' যোগ করা যায়নি।'}
+  };
+  taList();
+})();
+var MYK=null,MYY=0,EDIT=false,SD=null,pend=0,lastAct=Date.now(),stTot=0,stDay=0;
+function dh(){return new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Dhaka',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date())}
+function clock(){$('clk').textContent=new Intl.DateTimeFormat('bn-BD',{timeZone:'Asia/Dhaka',dateStyle:'full',timeStyle:'medium'}).format(new Date())+' (বাংলাদেশ সময়)'}
+setInterval(clock,1000);clock();
+function fmt(s){var h=Math.floor(s/3600),m=Math.floor(s%3600/60);return h?bn(h)+' ঘণ্টা '+bn(m)+' মিনিট':bn(m)+' মিনিট'}
+function showSt(){$('stm').textContent='আজ: '+fmt(stDay)+' · মোট: '+fmt(stTot)}
+['click','keydown','scroll','touchstart','mousemove'].forEach(function(e){addEventListener(e,function(){lastAct=Date.now()},{passive:true})});
+setInterval(function(){if(!document.hidden&&Date.now()-lastAct<120000&&UID&&SD){pend++;stDay++;stTot++;showSt()}},1000);
+async function saveSt(){
+  if(!SD||!UID||!pend)return;
+  var n=pend;pend=0;
+  try{
+    var r=SD.doc('st/'+UID),s=await r.get(),o=s.exists?s.data():{total:0,days:{}},d=dh();
+    o.total=(+o.total||0)+n;o.days=o.days||{};o.days[d]=(+o.days[d]||0)+n;
+    var ks=Object.keys(o.days).sort();while(ks.length>60)delete o.days[ks.shift()];
+    o.name=DEFNAME||'অতিথি';o.at=Date.now();await r.set(o);
+  }catch(e){pend+=n}
+}
+setInterval(saveSt,60000);
+document.addEventListener('visibilitychange',function(){if(document.hidden)saveSt()});
+function applyMy(){
+  if(!MYK||EDIT)return;
+  $('hcl').value=MYK;HC=MYK;$('hcl').disabled=true;hubLoad();
+  $('scl').value=MYK;$('scl').disabled=true;taSearch();
+}
+function clsUI(){
+  var b=$('mycl');b.textContent='';
+  var y=+dh().slice(0,4),jan1=dh().slice(5)==='01-01';
+  if(!UID){b.textContent='ক্লাস বাছাই করতে সাইন-ইন করুন।';return}
+  var can=!MYK||(jan1&&MYY<y);
+  if(MYK&&!can){b.appendChild(el('p','আপনার ক্লাস: ক্লাস '+bn(MYK)+'। নতুন ক্লাস বাছাই করা যাবে ১ জানুয়ারি '+bn(y+1)+' তারিখে।'));return}
+  b.appendChild(el('p',MYK?'নতুন বছর শুরু! চাইলে ক্লাস বদলাতে পারেন।':'আপনার ক্লাস বেছে নিন। একবার বাছাই করলে ১ জানুয়ারির আগে বদলানো যাবে না।'));
+  var sel=el('select');
+  ['6','7','8','9','10'].forEach(function(k){var o=el('option','ক্লাস '+bn(k));o.value=k;if(k===MYK)o.selected=true;sel.appendChild(o)});
+  var bt=el('button','ক্লাস নিশ্চিত করুন','go');
+  bt.onclick=async function(){
+    try{await SD.doc('ucl/'+UID).set({k:sel.value,y:y,at:Date.now()});MYK=sel.value;MYY=y;applyMy();clsUI()}
+    catch(e){b.appendChild(el('p','সংরক্ষণ করা যায়নি।'))}
+  };
+  b.appendChild(sel);b.appendChild(bt);
+}
+(async function(){
+  var u=null,uid=null;
+  try{if(window.claude&&claude.use){u=await claude.use('user');SD=await claude.use('db');EDIT=!!(u&&u.canEdit&&u.canEdit());uid=u?await u.id():null}}catch(e){}
+  if(!SD||!uid){$('stm').textContent='সাইন-ইন করলে পড়ার সময় গোনা হবে।';clsUI();return}
+  UID=UID||uid;
+  try{var s=await SD.doc('ucl/'+uid).get();if(s.exists){var v=s.data();MYK=String(v.k);MYY=+v.y||0}}catch(e){}
+  try{var t=await SD.doc('st/'+uid).get();if(t.exists){var w=t.data();stTot=+w.total||0;stDay=+((w.days||{})[dh()])||0}}catch(e){}
+  clsUI();applyMy();showSt();
+  SD.collection('st').orderBy('total','desc').limit(20).onSnapshot(function(sn){
+    var l=$('stl');l.textContent='';l.appendChild(el('h3','📚 সবচেয়ে বেশি পড়েছেন'));
+    var ol=el('ol');
+    sn.docs.forEach(function(d){var v=d.data(),li=el('li',String(v.name||'অতিথি'));li.appendChild(el('span',fmt(+v.total||0)));ol.appendChild(li)});
+    l.appendChild(ol);
+  },function(){});
+})();
+function esc(s){return String(s==null?'':s).replace(/[&<>]/g,function(c){return c==='&'?'&amp;':c==='<'?'&lt;':'&gt;'})}
+(async function(){var s=null;try{s=(window.claude&&claude.use)?await claude.use('sample'):null}catch(e){}if(!s)$('qgen').hidden=true})();
+function startT(q){
+  clearInterval(TI);var tm=el('div','⏱ '+bn(20),'tm');tm.id='tm';$('quiz').appendChild(tm);if(q.s)$('quiz').appendChild(el('small',q.s));var t=20;
+  TI=setInterval(function(){
+    t--;tm.textContent='⏱ '+bn(t);
+    if(t<=0){clearInterval(TI);if(LOCK)return;LOCK=true;var bs=$('quiz').querySelectorAll('.opt');if(bs[q.a])bs[q.a].classList.add('ok');setTimeout(function(){qi++;renderQ()},900)}
+  },1000);
+}
+(async function(){
+  if(!window.claude||!claude.use)return;
+  var u=null,db=null,ed=false;
+  try{u=await claude.use('user');db=await claude.use('db')}catch(e){}
+  if(!db)return;
+  try{ed=!!(u&&u.canEdit())}catch(e){}
+  if(ed)$('ed').hidden=false;
+  $('epub').onclick=async function(){
+    var t=$('et').value.trim(),b=$('eb').value.split('\n').map(function(x){return x.trim()}).filter(Boolean);
+    if(!t||!b.length){$('emsg').textContent=' শিরোনাম ও লেখা দিন।';return}
+    try{await db.collection('posts').add({t:t.slice(0,150),c:$('ec').value,k:$('ek').value,b:b.slice(0,40),at:Date.now()});$('et').value='';$('eb').value='';$('emsg').textContent=' প্রকাশিত হয়েছে।'}
+    catch(e){$('emsg').textContent=' প্রকাশ করা যায়নি।'}
+  };
+  db.collection('posts').orderBy('at','desc').limit(50).onSnapshot(function(s){
+    document.querySelectorAll('.card.np').forEach(function(c){c.remove()});
+    DP={};var g=$('posts');
+    s.docs.forEach(function(d){
+      var v=d.data(),id=d.id,k=String(v.k||'');
+      DP[id]={t:esc(v.t),c:esc(v.c),k:k,m:'নতুন লেখা',b:(Array.isArray(v.b)?v.b:[]).map(esc)};
+      var a=el('article',null,'card np');a.dataset.c=v.c||'';a.dataset.k=k;
+      a.appendChild(el('span',(v.c||'')+(k?' · ক্লাস '+bn(k):''),'cat'));
+      a.appendChild(el('h2',String(v.t||'')));a.appendChild(el('p',String((v.b&&v.b[0])||'')));
+      if(ed){var x=el('button','মুছুন','go');x.onclick=function(ev){ev.stopPropagation();db.doc('posts/'+id).delete()};a.appendChild(x)}
+      a.onclick=function(){location.hash='np-'+id};
+      g.insertBefore(a,g.firstChild);
+    });
+    route();applyF();
+  },function(){});
+})();
+function showAct(){$('gcopy').textContent='কপি করুন';$('gcopy').hidden=false;$('gdl').hidden=false}
+$('gcopy').onclick=async function(){
+  var t=$('qout').textContent;
+  try{await navigator.clipboard.writeText(t);this.textContent='কপি হয়েছে ✓'}
+  catch(e){var r=document.createRange();r.selectNodeContents($('qout'));var s=getSelection();s.removeAllRanges();s.addRange(r);this.textContent='নির্বাচিত, এখন কপি করুন'}
+};
+$('gdl').onclick=async function(){
+  try{var d=await claude.use('downloads');if(!d){this.textContent='সেভ করা যাচ্ছে না';return}await d.save({filename:'questions.txt',data:$('qout').textContent})}catch(e){}
+};
+(function(){
+  var btn=document.getElementById('gbtn'),out=document.getElementById('qout');
+  var SP={sri:'দুটি সৃজনশীল প্রশ্ন (প্রতিটিতে একটি উদ্দীপক এবং ক, খ, গ, ঘ অংশ: জ্ঞানমূলক ১, অনুধাবনমূলক ২, প্রয়োগমূলক ৩, উচ্চতর দক্ষতা ৪ নম্বরের) আদর্শ উত্তরসহ',mcq:'১০টি বহুনির্বাচনী প্রশ্ন, প্রতিটিতে ক, খ, গ, ঘ চারটি অপশন এবং শেষে সঠিক উত্তরসহ',short:'৮টি সংক্ষিপ্ত প্রশ্ন এবং প্রতিটির ২-৩ বাক্যের উত্তর'};
+  btn.addEventListener('click',async function(){
+    var cl=document.getElementById('gcl').value,ty=document.getElementById('gty').value;
+    var sub=document.getElementById('gsub').value.trim(),ch=document.getElementById('gch').value.trim();
+    if(!sub){out.textContent='প্রথমে বিষয়ের নাম লিখুন।';return}
+    var s=null;
+    try{s=(window.claude&&claude.use)?await claude.use('sample'):null}catch(e){}
+    if(!s){out.textContent='প্রশ্ন তৈরির সুবিধা এখানে চালু নেই।';return}
+    btn.disabled=true;out.textContent='প্রশ্ন তৈরি হচ্ছে…';
+    var prompt='তুমি বাংলাদেশের জাতীয় শিক্ষাক্রম (এনসিটিবি) অনুসরণকারী একজন শিক্ষক। ক্লাস '+bn(cl)+' এর '+sub+' বিষয়'+(ch?' (অধ্যায় বা টপিক: '+ch+')':'')+' এর জন্য '+SP[ty]+' তৈরি করো। শুধু সাদা লেখায় বাংলায় লিখবে, মার্কডাউন চিহ্ন (যেমন ** বা #) ব্যবহার করবে না। প্রশ্ন ও উত্তর ক্লাসের স্তর অনুযায়ী হবে।';
+    try{await s(prompt,{onText:function(r){out.textContent=r.text},cache:false});showAct()}
+    catch(e){out.textContent=(e&&e.code==='not_granted')?'অনুমতি দেওয়া হয়নি।':(e&&e.code==='rate_limited')?'একটু পরে আবার চেষ্টা করুন।':'প্রশ্ন তৈরি করা যায়নি।'}
+    btn.disabled=false;
+  });
+})();
+var CP=[
+{t:'ক্লাস ৬: গণিত ভালো লাগানোর সহজ উপায়',c:'পড়ার কৌশল',k:'6',m:'৩ মিনিটের পাঠ',b:['গণিত ভয় পাওয়ার বিষয় নয়। প্রতিদিন অল্প কয়েকটি অঙ্ক নিজে নিজে করলেই আত্মবিশ্বাস বাড়ে।','নামতা মুখস্থ রাখুন, আর কোনো অঙ্ক ভুল হলে কোথায় ভুল হলো তা লিখে রাখুন। এতে একই ভুল বারবার হবে না।']},
+{t:'ক্লাস ৭: বিজ্ঞান মনে রাখার কৌশল',c:'পড়ার কৌশল',k:'7',m:'৪ মিনিটের পাঠ',b:['বিজ্ঞানে শুধু মুখস্থ নয়, কেন এমন হয় সেটা বোঝা জরুরি। পড়ার পর নিজেকে প্রশ্ন করুন: এটা কীভাবে কাজ করে?','ছবি এঁকে বা ছোট চার্ট বানিয়ে পড়লে সংজ্ঞা আর প্রক্রিয়া অনেক দিন মনে থাকে।']},
+{t:'ক্লাস ৮: বার্ষিক পরীক্ষার প্রস্তুতি',c:'পরীক্ষা',k:'8',m:'৫ মিনিটের পাঠ',b:['পরীক্ষার কয়েক সপ্তাহ আগে বিষয়গুলোকে ভাগ করে নিন এবং প্রতিদিন দুটি বিষয়ে সময় দিন।','প্রতি সপ্তাহে একবার নির্দিষ্ট সময় ধরে নমুনা প্রশ্নের উত্তর লিখে অভ্যাস করুন।']},
+{t:'ক্লাস ৯: বিভাগ বেছে নেওয়ার আগে যা ভাবতে হবে',c:'ক্যারিয়ার',k:'9',m:'৫ মিনিটের পাঠ',b:['নবম শ্রেণিতে বিজ্ঞান, মানবিক বা ব্যবসায় শিক্ষা বেছে নিতে হয়। কোন বিষয় পড়তে আপনার ভালো লাগে, সেটাই আগে ভাবুন।','শিক্ষক ও অভিভাবকের সঙ্গে কথা বলুন, তবে সিদ্ধান্ত নেওয়ার সময় নিজের আগ্রহকে গুরুত্ব দিন।']},
+{t:'ক্লাস ১০: এসএসসির শেষ তিন মাসের পরিকল্পনা',c:'পরীক্ষা',k:'10',m:'৬ মিনিটের পাঠ',b:['শেষ তিন মাসে নতুন কিছু শুরু না করে সিলেবাসের গুরুত্বপূর্ণ অধ্যায়গুলো বারবার ঝালিয়ে নিন।','আগের বছরের প্রশ্ন সময় ধরে সমাধান করুন এবং প্রতিদিন পর্যাপ্ত ঘুমান। শরীর ভালো থাকলে পড়াও ভালো হয়।']}
+];
+P=P.concat(CP);
+var QC={
+'6':[{q:'৫ × ৬ = কত?',o:['১১','৩০','৩৬','২৫'],a:1},{q:'বাংলাদেশের রাজধানী কোনটি?',o:['চট্টগ্রাম','ঢাকা','খুলনা'],a:1},{q:'পানির রাসায়নিক সংকেত কোনটি?',o:['CO₂','O₂','H₂O'],a:2}],
+'7':[{q:'১২ এর বর্গ কত?',o:['১৪৪','১২২','১৪২'],a:0},{q:'বাংলাদেশের জাতীয় ফুল কোনটি?',o:['গোলাপ','শাপলা','জবা'],a:1},{q:'আলোর গতি প্রায় কত?',o:['৩ হাজার কি.মি./সে.','৩ লক্ষ কি.মি./সে.','৩০ কি.মি./সে.'],a:1}],
+'8':[{q:'ত্রিভুজের তিন কোণের সমষ্টি কত?',o:['৯০°','২৭০°','১৮০°'],a:2},{q:'শব্দ চলাচলের জন্য কী প্রয়োজন?',o:['মাধ্যম','শূন্যস্থান','আলো'],a:0},{q:'ভাষা আন্দোলন হয়েছিল কত সালে?',o:['১৯৪৭','১৯৫২','১৯৭১'],a:1}],
+'9':[{q:'(a+b)² = কত?',o:['a²+b²','a²+2ab+b²','2a+2b'],a:1},{q:'সালোকসংশ্লেষণে কোন গ্যাস নির্গত হয়?',o:['অক্সিজেন','নাইট্রোজেন','হাইড্রোজেন'],a:0},{q:'মুক্তিযুদ্ধ হয়েছিল কত সালে?',o:['১৯৫২','১৯৬৯','১৯৭১'],a:2}],
+'10':[{q:'sin 30° এর মান কত?',o:['১','১/২','√৩/২'],a:1},{q:'নিউটনের প্রথম সূত্র কোন ধারণার সঙ্গে সম্পর্কিত?',o:['তাপ','জড়তা','আলো'],a:1},{q:'হাইড্রোজেনের পারমাণবিক সংখ্যা কত?',o:['২','১','৮'],a:1}]
+};
+QC['6'].push({q:'আমাদের জাতীয় পাখির নাম কী?',o:['কাক','দোয়েল','চড়ুই'],a:1},{q:'১০০ ÷ ৪ = কত?',o:['২৫','৪০','২০'],a:0});
+QC['7'].push({q:'ঘনকের তলের সংখ্যা কত?',o:['৬','৮','১২'],a:0},{q:'উদ্ভিদ কোন গ্যাস নিয়ে খাদ্য তৈরি করে?',o:['অক্সিজেন','কার্বন ডাই-অক্সাইড','নাইট্রোজেন'],a:1});
+QC['8'].push({q:'২০০ এর ১৫% কত?',o:['৩০','১৫','৪৫'],a:0},{q:'বাংলাদেশের স্বাধীনতা দিবস কবে?',o:['১৬ ডিসেম্বর','২৬ মার্চ','২১ ফেব্রুয়ারি'],a:1});
+QC['9'].push({q:'x²−9 এর উৎপাদক কোনটি?',o:['(x+3)(x−3)','(x−9)(x+1)','(x−3)²'],a:0},{q:'DNA এর পূর্ণরূপ কোনটি?',o:['ডিঅক্সিরাইবো নিউক্লিক এসিড','ডাই নাইট্রো এসিড','ডেক্সট্রো নিউক্লিক এসিড'],a:0});
+QC['10'].push({q:'নিচের কোনটি পানির উপাদান নয়?',o:['হাইড্রোজেন','অক্সিজেন','নাইট্রোজেন'],a:2},{q:'tan 45° এর মান কত?',o:['০','১','√৩'],a:1});
+function applyF(){document.querySelectorAll('.card').forEach(function(card){card.classList.toggle('hid-c',!((C==='all'||card.dataset.c===C)&&(K==='all'||card.dataset.k===K)))})}
+var QB={};
+function pick(b){
+  b.appendChild(el('h3','কোন ক্লাসের কুইজ দেবেন?'));
+  (MYK&&!EDIT?[MYK]:['6','7','8','9','10']).forEach(function(k){var bt=el('button','ক্লাস '+bn(k),'opt');bt.onclick=function(){startCls(k)};b.appendChild(bt)});
+}
+function startCls(k){
+  var arr=(QB[k]||[]).filter(function(x){return x.q&&x.o.length>1}),b=$('quiz');
+  if(!arr.length){
+    b.textContent='';b.appendChild(el('h3','ক্লাস '+bn(k)+': শিক্ষক এখনো বইভিত্তিক প্রশ্ন যোগ করেননি।'));
+    var r=el('button','ফিরে যান','go');r.onclick=function(){STARTED=false;renderQ()};b.appendChild(r);return;
+  }
+  arr.sort(function(){return Math.random()-0.5});
+  if(!Q0)Q0=Q;Q=arr.slice(0,10);qi=0;sc=0;STARTED=true;
+  $('lb').parentNode.querySelector('h2').textContent='🏆 সেরা ১০০ · ক্লাস '+bn(k);
+  board('c'+k);renderQ();
+}
+function pickOld(b){
+  b.appendChild(el('h3','কোন ক্লাসের কুইজ দেবেন?'));
+  [['6','ক্লাস ৬'],['7','ক্লাস ৭'],['8','ক্লাস ৮'],['9','ক্লাস ৯'],['10','ক্লাস ১০'],['g','সাধারণ (পড়ার কৌশল)']].forEach(function(x){
+    var bt=el('button',x[1],'opt');
+    bt.onclick=function(){
+      if(!Q0)Q0=Q;Q=x[0]==='g'?Q0:QC[x[0]];qi=0;sc=0;STARTED=true;
+      $('lb').parentNode.querySelector('h2').textContent='🏆 সেরা ১০০ · '+x[1];
+      board(x[0]==='g'?'scores':'c'+x[0]);renderQ();
+    };
+    b.appendChild(bt);
+  });
+}
+function board(col){
+  LK=col;if(!DB)return;
+  if(UNSUB)UNSUB();
+  var lb=$('lb');lb.textContent='লোড হচ্ছে…';
+  var t=setTimeout(function(){lb.textContent='ডেটা এখনো আনা যায়নি…'},10000);
+  UNSUB=DB.collection(col).orderBy('score','desc').limit(100).onSnapshot(function(s){clearTimeout(t);drawLB(s.docs)},function(){clearTimeout(t);lb.textContent='লিডারবোর্ড লোড হয়নি।'});
+}
+function route(){
+  var m=location.hash.match(/^#(?:post|np)-([A-Za-z0-9_-]+)$/),main=document.querySelector('main'),a=document.getElementById('article');
+  var p=m&&(location.hash.indexOf('#np-')===0?DP[m[1]]:P[m[1]-1]);if(p){
+    a.innerHTML='<a class="back" href="#posts">← সব লেখা</a><h1>'+p.t+'</h1><div class="meta">'+p.c+' · '+p.m+'</div>'+p.b.map(function(x){return '<p>'+x+'</p>'}).join('');
+    main.classList.add('reading');window.scrollTo(0,0);
+  }else{main.classList.remove('reading')}
+}
+window.addEventListener('hashchange',route);route();
+(function(){
+  var g=document.getElementById('posts');
+  CP.forEach(function(p){
+    var a=document.createElement('article');a.className='card';a.dataset.c=p.c;a.dataset.k=p.k;
+    a.appendChild(el('span',p.c+' · ক্লাস '+bn(p.k),'cat'));
+    a.appendChild(el('h2',p.t));a.appendChild(el('p',p.b[0]));a.appendChild(el('small',p.m));
+    g.appendChild(a);
+  });
+  var row=el('div',null,'tags');row.id='cls';
+  [['all','সব ক্লাস'],['6','ক্লাস ৬'],['7','ক্লাস ৭'],['8','ক্লাস ৮'],['9','ক্লাস ৯'],['10','ক্লাস ১০']].forEach(function(x,i){
+    var bt=el('button',x[1],i===0?'on':'');bt.dataset.k=x[0];row.appendChild(bt);
+  });
+  document.getElementById('tags').insertAdjacentElement('afterend',row);
+  row.addEventListener('click',function(e){
+    var b=e.target.closest('button');if(!b)return;
+    row.querySelectorAll('button').forEach(function(x){x.classList.remove('on')});
+    b.classList.add('on');K=b.dataset.k;applyF();
+  });
+})();
+var Q=[
+{q:'পোমোডোরো পদ্ধতিতে সাধারণত কত মিনিট একটানা পড়া হয়?',o:['৫ মিনিট','২৫ মিনিট','১২০ মিনিট','১০ মিনিট'],a:1},
+{q:'পরীক্ষার আগের রাতে কত ঘণ্টা ঘুম ভালো?',o:['২–৩ ঘণ্টা','৪ ঘণ্টা','৮–১০ ঘণ্টা','১২ ঘণ্টা'],a:2},
+{q:'কঠিন বিষয় পড়ার সেরা সময় কোনটি?',o:['যখন সবচেয়ে সতেজ থাকি','যখন খুব ক্লান্ত থাকি','শুধু রাত ২টায়','যেকোনো সময় একই'],a:0},
+{q:'রিভিশনের সবচেয়ে কার্যকর উপায় কোনটি?',o:['শুধু আবার পড়া','রং দিয়ে দাগানো','নিজেকে প্রশ্ন করে উত্তর দেওয়া','বইয়ের দিকে তাকিয়ে থাকা'],a:2},
+{q:'নোট নেওয়ার মূল উদ্দেশ্য কী?',o:['সব কথা হুবহু টুকে রাখা','মূল বিষয় নিজের ভাষায় গুছিয়ে লেখা','সুন্দর হাতের লেখা দেখানো','পাতা ভরানো'],a:1}
+],qi=0,sc=0,DB=null,UID=null,DEFNAME='';
+function $(id){return document.getElementById(id)}
+function bn(n){return String(n).replace(/\d/g,function(d){return '০১২৩৪৫৬৭৮৯'[d]})}
+function el(t,txt,cls){var e=document.createElement(t);if(txt)e.textContent=txt;if(cls)e.className=cls;return e}
+function renderQ(){
+  var b=$('quiz');b.textContent='';LOCK=false;if(!STARTED){pick(b);return}
+  if(qi>=Q.length){finish(b);return}
+  var q=Q[qi];startT(q);
+  b.appendChild(el('h3','প্রশ্ন '+bn(qi+1)+'/'+bn(Q.length)+': '+q.q));
+  q.o.forEach(function(t,k){var bt=el('button',t,'opt');bt.onclick=function(){if(LOCK)return;LOCK=true;clearInterval(TI);var bs=b.querySelectorAll('.opt');if(k===q.a){sc++;bt.classList.add('ok')}else{bt.classList.add('no');bs[q.a].classList.add('ok')}setTimeout(function(){qi++;renderQ()},900)};b.appendChild(bt)});
+}
+function finish(b){
+  b.appendChild(el('h3','আপনার স্কোর: '+bn(sc)+'/'+bn(Q.length)));
+  var inp=el('input');inp.id='pname';inp.placeholder='আপনার নাম';inp.maxLength=30;
+  try{inp.value=localStorage.getItem('pname')||DEFNAME||''}catch(e){inp.value=DEFNAME||''}
+  var msg=el('p');
+  var s=el('button','লিডারবোর্ডে যোগ করুন','go');s.onclick=function(){try{localStorage.setItem('pname',inp.value)}catch(e){};save(inp.value.trim(),msg)};
+  var r=el('button','আবার খেলুন','go');r.onclick=function(){qi=0;sc=0;STARTED=false;renderQ()};
+  b.appendChild(inp);b.appendChild(s);b.appendChild(r);b.appendChild(msg);
+}
+async function save(name,m){if(!DB||!UID){try{var o=+localStorage.getItem('best'+LK)||0;if(sc>o)localStorage.setItem('best'+LK,sc);m.textContent='আপনার সেরা স্কোর: '+bn(Math.max(o,sc))+' (এই ডিভাইসে সংরক্ষিত)'}catch(e){m.textContent='স্কোর সংরক্ষণ করা যায়নি।'}return}
+  if(!DB||!UID){m.textContent='স্কোর সংরক্ষণ এখন সম্ভব নয়।';return}
+  try{
+    var ref=DB.doc(LK+'/'+UID),s=await ref.get();
+    if(s.exists&&s.data().score>=sc){m.textContent='আপনার আগের সেরা স্কোর এর চেয়ে ভালো বা সমান।';return}
+    await ref.set({name:name.slice(0,30)||'নামহীন',score:sc,at:Date.now()});
+    m.textContent='লিডারবোর্ডে যোগ হয়েছে!';
+  }catch(e){m.textContent='সংরক্ষণ করা যায়নি। হয়তো লেখার অনুমতি নেই।'}
+}
+function drawLB(docs){
+  var lb=$('lb');lb.textContent='';
+  if(!docs.length){lb.textContent='এখনো কেউ স্কোর দেয়নি। প্রথম হোন!';return}
+  var ol=el('ol');
+  docs.forEach(function(d,i){var v=d.data(),li=el('li',String(v.name||'নামহীন'),d.id===UID?'me':'');li.appendChild(el('span',bn(v.score)+'/'+bn(Q.length)));if(i<3)li.insertBefore(document.createTextNode(['🥇','🥈','🥉'][i]+' '),li.firstChild);ol.appendChild(li)});
+  lb.appendChild(ol);
+}
+renderQ();
+(async function(){
+  var lb=$('lb');
+  if(!window.claude||!claude.use){lb.textContent='লিডারবোর্ড এখানে চালু নেই।';return}
+  try{var u=await claude.use('user');DB=await claude.use('db');if(u){UID=await u.id();DEFNAME=(await u.name())||''}}catch(e){}
+  $('who').textContent=UID?('স্বাগতম'+(DEFNAME?', '+DEFNAME:'')):'অতিথি';
+  if(!DB){lb.textContent='লিডারবোর্ড দেখতে সাইন-ইন প্রয়োজন।';return}
+  var t=setTimeout(function(){lb.textContent='ডেটা এখনো আনা যায়নি…'},10000);
+  UNSUB=DB.collection(LK).orderBy('score','desc').limit(100).onSnapshot(function(s){clearTimeout(t);drawLB(s.docs)},function(){clearTimeout(t);lb.textContent='লিডারবোর্ড লোড হয়নি।'});
+})();
+document.querySelectorAll('.card').forEach(function(card,i){card.addEventListener('click',function(){location.hash='post-'+(i+1)})});
+document.getElementById('q').addEventListener('input',function(e){
+  var v=e.target.value.trim();
+  document.querySelectorAll('.card').forEach(function(card){card.classList.toggle('hid-q',v!==''&&card.textContent.indexOf(v)<0)});
+});
+(function(){
+  var r=document.documentElement;
+  try{var s=localStorage.getItem('theme');if(s)r.setAttribute('data-theme',s)}catch(e){}
+  document.getElementById('theme').addEventListener('click',function(){
+    var dark=r.getAttribute('data-theme')?r.getAttribute('data-theme')==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
+    var n=dark?'light':'dark';r.setAttribute('data-theme',n);
+    try{localStorage.setItem('theme',n)}catch(e){}
+  });
+})();
+document.getElementById('tags').addEventListener('click',function(e){
+  var b=e.target.closest('button'); if(!b) return;
+  document.querySelectorAll('#tags button').forEach(function(x){x.classList.remove('on')});
+  b.classList.add('on');
+  C=b.dataset.c;applyF();
+  document.querySelectorAll('.card').forEach(function(card){
+    
+  });
+});
+</script>
+</body>
+</html>
